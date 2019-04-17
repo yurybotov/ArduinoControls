@@ -1,6 +1,25 @@
+/*
+	Обработчик контролирующий выход параметра за пределы верхней и нижней границы
+
+	Подключается к аналоговому входу
+
+	При переходах через границы генерирует события:
+  * onLow
+  * onNormal
+  * onHigh
+
+	Создано 3.02.2019
+	Юрий Ботов
+	Изменено 17.04.2019
+	Юрий Ботов
+
+	http://github.com/yurybotov/ArduinoControls.git
+
+*/
 #ifndef __RANGER_H__
 #define __RANGER_H__
 
+#include "arduino.h"
 #include "meter.h"
 
 class RangerSensor;
