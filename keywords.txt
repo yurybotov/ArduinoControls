@@ -1,0 +1,32 @@
+# Syntax Coloring Map
+
+# Datatypes (KEYWORD1)
+
+Key	KEYWORD1
+Meter	KEYWORD1
+Encoder	KEYWORD1
+Joystick	KEYWORD1
+Ranger	KEYWORD1
+Comparator	KEYWORD1
+
+# Methods and Functions (KEYWORD2)
+
+update	KEYWORD2
+value	KEYWORD2
+valuex	KEYWORD2
+valuey	KEYWORD2
+setPin	KEYWORD2
+setName	KEYWORD2
+calibrate	KEYWORD2
+event	KEYWORD2
+onPress	KEYWORD2
+onRelise	KEYWORD2
+onChange	KEYWORD2
+onLess	KEYWORD2
+onMore	KEYWORD2
+onEqual	KEYWORD2
+onLow	KEYWORD2
+onHigh	KEYWORD2
+onNormal	KEYWORD2
+
+# Constants (LITERAL1)
