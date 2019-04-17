@@ -24,9 +24,6 @@ onRelise	KEYWORD2
 onChange	KEYWORD2
 onLess	KEYWORD2
 onMore	KEYWORD2
-onEqual	KEYWORD2
-onLow	KEYWORD2
-onHigh	KEYWORD2
-onNormal	KEYWORD2
+onRange	KEYWORD2
 
 # Constants (LITERAL1)

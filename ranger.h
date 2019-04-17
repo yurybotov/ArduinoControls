@@ -63,9 +63,9 @@ class Ranger {
     // возвращает последнее значение
     inline char value(void) { return state; }
     // события, обработчики которых должен написать пользователь, указав какие действия предпринять при их возникновении
-    virtual void onLow(String name);
-    virtual void onNormal(String name);
-    virtual void onHigh(String name);
+    virtual void onLess(String name);
+    virtual void onRange(String name);
+    virtual void onMore(String name);
   private:
     String name; // имя датчика
     int lowrange; // нижняя граница, ниже ее вызывается onLow

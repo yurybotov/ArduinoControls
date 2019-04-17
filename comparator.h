@@ -1,5 +1,5 @@
 /*
-	Обработчик двух-входового компаратора
+	Обработчик двух-входового компаратора c возможностью гистерезиса
 
 	Подключается к двум аналоговым входам
 
@@ -27,7 +27,9 @@ class Comparator;
 class ComparatorSensor : public Meter {
   public:
     // обычный конструктор
-    inline ComparatorSensor(String name/*имя сенсора*/, Comparator* comparator/*ссылка на вызывающий класс*/) : Meter( name) { parent = comparator; }
+    inline ComparatorSensor(String name/*имя сенсора*/, Comparator* comparator/*ссылка на вызывающий класс*/) : Meter( name) { parent = comparator; hysteresis = 0; }
+    // конструктор с гистерезисом
+    inline ComparatorSensor(String name, Comparator* comparator, int hysteresis/*гистерезис компататора*/) : Meter( name) { parent = comparator; this->hysteresis = hysteresis; }
     // деструктор
     inline ~ComparatorSensor() {}
     // обработчик изменения - определен в comparator.cpp
@@ -48,22 +50,22 @@ class Comparator {
     inline void update(void) { work.update(); ref.update(); }
     inline void event(String name, int value) {;
       if( name == String("W")) { main = value; } else { if( name == String("R")) { reference = value; }}
-      char current = (main > reference)?'>':((main < reference)?'<':'=');
+      char current = (main - hysteresis > reference)?'>':((main < reference - hysteresis)?'<':'=');
       if(current != state && current == '>') { state = current; onMore(this->name); } 
       else { if(current != state && current == '<') { state = current; onLess(this->name); } 
-             else { if(current != state && current == '=') { state = current; onEqual(this->name);} 
+             else { if(current != state && current == '=') { state = current;} 
              }
       }  
     }
     inline char value(void) { return state; }
     virtual void onLess(String name);
-    virtual void onEqual(String name);
     virtual void onMore(String name);
   private:
     String name;
     int main;
     int reference;
     char state;
+    int hysteresis;
     ComparatorSensor& work = *new ComparatorSensor(String("W"), this);
     ComparatorSensor& ref = *new ComparatorSensor(String("R"), this);
 };
