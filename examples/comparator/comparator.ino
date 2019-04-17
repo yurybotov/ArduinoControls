@@ -18,11 +18,12 @@
 #include "blinker.h"
 #include "comparator.h"
 
-Blinker blink = Blink( LED, SLOW);
-Comparator compensator = Comparator("Compensator", 400, 600 );
+Blinker blink = Blinker( LED_BUILTIN, SLOW);
+Comparator compensator = Comparator("Compensator", A0, A1 );
 
-Comparator::onLess() { blink.setMode( SLOW); }
-Comparator::onMore() { blink.setMode( FAST); }
+void Comparator::onLess(String name) { blink.setMode( SLOW); }
+void Comparator::onMore(String name) { blink.setMode( FAST); }
+void Meter::onChange(String name, int value) {}
 
 void setup() {
 

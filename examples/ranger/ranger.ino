@@ -18,12 +18,13 @@
 #include "blinker.h"
 #include "ranger.h"
 
-Blinker blink = Blink( LED, SLOW);
+Blinker blink = Blinker( LED_BUILTIN, SLOW);
 Ranger termostat = Ranger("Termostat", 400, 600 );
 
-Ranger::onLess() { blink.setMode( SLOW); }
-Ranger::onMore() { blink.setMode( FAST); }
-Ranger::onRange() { blink.setMode( LIGHT); }
+void Ranger::onLess(String name) { blink.setMode( SLOW); }
+void Ranger::onMore(String name) { blink.setMode( FAST); }
+void Ranger::onRange(String name) { blink.setMode( LIGHT); }
+void Meter::onChange(String name, int value) {}
 
 void setup() {
 

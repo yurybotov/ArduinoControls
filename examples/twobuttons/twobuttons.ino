@@ -18,7 +18,7 @@
 #include "blinker.h"
 #include "key.h"
 
-Blinker blink = Blink(LED,SLOW);
+Blinker blink = Blinker( LED_BUILTIN, SLOW);
 Key slow = Key("Slow",2,5);
 Key fast = Key("Fast",4,5);
 

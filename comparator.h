@@ -27,9 +27,9 @@ class Comparator;
 class ComparatorSensor : public Meter {
   public:
     // обычный конструктор
-    inline ComparatorSensor(String name/*имя сенсора*/, Comparator* comparator/*ссылка на вызывающий класс*/) : Meter( name) { parent = comparator; hysteresis = 0; }
+    inline ComparatorSensor(String name/*имя сенсора*/, Comparator* comparator/*ссылка на вызывающий класс*/) : Meter( name) { parent = comparator;}
     // конструктор с гистерезисом
-    inline ComparatorSensor(String name, Comparator* comparator, int hysteresis/*гистерезис компататора*/) : Meter( name) { parent = comparator; this->hysteresis = hysteresis; }
+    inline ComparatorSensor(String name, Comparator* comparator, int hysteresis/*гистерезис компататора*/) : Meter( name) { parent = comparator; }
     // деструктор
     inline ~ComparatorSensor() {}
     // обработчик изменения - определен в comparator.cpp
@@ -40,11 +40,19 @@ class ComparatorSensor : public Meter {
 
 class Comparator {
   public:
+    inline Comparator(String name, byte mainpin, byte referencepin, int hysteresis) { 
+      this->name = name; 
+      work.setPin( mainpin);
+      ref.setPin( referencepin);
+      state = '?';
+      this->hysteresis = hysteresis;
+    }
     inline Comparator(String name, byte mainpin , byte referencepin) { 
       this->name = name; 
       work.setPin( mainpin);
       ref.setPin( referencepin);
       state = '?';
+      hysteresis = 0;
     }
     inline ~Comparator() {}
     inline void update(void) { work.update(); ref.update(); }

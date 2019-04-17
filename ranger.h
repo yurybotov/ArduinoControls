@@ -53,11 +53,9 @@ class Ranger {
     // обработчик событий от датчика
     inline void event(String name, int value) {
       char current = (value > highrange)?'>':((value < lowrange)?'<':'=');
-      if(current != state && current == '>') {state = current; onHigh(name);} 
-      else { if(current != state && current == '<') {state = current; onLow(name);} 
-             else { if(current != state && current == '=') {state = current; onNormal(name);}
-                    else {} 
-             }
+      if(current != state && current == '>') {state = current; onMore(this->name);} 
+      else { if(current != state && current == '<') {state = current; onLess(this->name);} 
+             else { if(current != state && current == '=') { state = current; onRange(this->name);} }
       }  
     }
     // возвращает последнее значение

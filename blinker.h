@@ -23,14 +23,14 @@
 
 #include "arduino.h"
 
-enum BlinkerModes {NONE,SLOW,FLASH,MIDDLE,FAST,LIGHT};
+enum BlinkerMode { NONE, SLOW, FLASH, MIDDLE, FAST, LIGHT };
 
 class Blinker {
     public:
-        inline Blinker(byte pin, BlinkerMode mode) { this->pin = pin; this->mode = this->previous = mode; pinMode(pin, OUTPUT); ledState = LOW; }
-        inline Blinker(byte pin) { this->pin = pin; this->mode = this->previous = SLOW; pinMode(pin, OUTPUT); ledstate = LOW; }
+        inline Blinker(byte pin, enum BlinkerMode mode) { this->pin = pin; this->mode = this->previous = mode; pinMode(pin, OUTPUT); ledState = LOW; }
+        inline Blinker(byte pin) { this->pin = pin; this->mode = this->previous = SLOW; pinMode(pin, OUTPUT); ledState = LOW; }
         inline ~Blinker() {}
-        inline void setMode(BlinkerMode mode) { this->mode = mode; }
+        inline void setMode(enum BlinkerMode mode) { this->mode = mode; }
         void update() {
             if( previous != mode && ( mode == NONE || mode == LIGHT)) { 
                 if( mode == NONE) { ledState = LOW; digitalWrite( pin, LOW); }
@@ -48,8 +48,8 @@ class Blinker {
         }
     private:
         byte pin;
-        BlinkerModes mode;
-        BlinkerModes previous;
+        enum BlinkerMode mode;
+        enum BlinkerMode previous;
         unsigned long prevtime;
         byte ledState;
         void blink(int dark, int light) {

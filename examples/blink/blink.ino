@@ -16,7 +16,7 @@
 
 #include "blinker.h"
 
-Blinker blink = Blink(LED);
+Blinker blink = Blinker(LED_BUILTIN);
 
 void setup() {
 

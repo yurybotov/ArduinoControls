@@ -16,14 +16,14 @@
 #include "arduino.h"
 
 #include "blinker.h"
-#include "comparator.h"
+#include "encoder.h"
 
-Blinker blink = Blink( LED, SLOW);
+Blinker blink = Blinker( LED_BUILTIN, SLOW);
 Encoder encoder = Encoder("Encoder", 2, 4, 0, 6, 0, CYCLIC );
 Key encoderkey = Key("EncoderKey", 2, 5);
 
-Encoder::onChange(String name, int value) { 
-    BlinkerModes mode = NONE;
+void Encoder::onChange(String name, int value) { 
+    enum BlinkerMode mode = NONE;
     switch( value) {
         case 0: mode = NONE; break;
         case 1: mode = SLOW; break;
@@ -35,15 +35,17 @@ Encoder::onChange(String name, int value) {
     }
     blink.setMode( mode); 
 }
-Key::onPress(String name) { blink.setMode(LIGHT); }
-Key::onRelise(String name) { blink.setMode(NONE); }
+void Key::onPress(String name) { blink.setMode(LIGHT); }
+void Key::onRelise(String name) { blink.setMode(NONE); }
+
 
 void setup() {
 
 }
 
 void loop() {
-    compensator.update();
+    encoder.update();
+    encoderkey.update();
     blink.update();
 }
 
