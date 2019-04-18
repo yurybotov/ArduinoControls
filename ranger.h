@@ -42,8 +42,8 @@ class RangerSensor : public Meter {
 class Ranger {
   public:
     // штатный конструктор
-    inline Ranger(String name/*имя*/, int lowrange/*значение нижней границы*/, int highrange/*значение верхней границы*/) 
-      { this->name = name; this->lowrange = lowrange; this->highrange = highrange; state = '?'; sensor.setName( name);}
+    inline Ranger(String name/*имя*/, byte pin, int lowrange/*значение нижней границы*/, int highrange/*значение верхней границы*/) 
+      { this->name = name; this->lowrange = lowrange; this->highrange = highrange; state = '?'; sensor.setName( name); sensor.setPin(pin);}
     // деструктор
     inline ~Ranger() {}
     // установка диапазона (если надо в процессе работы поменять)

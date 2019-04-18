@@ -19,7 +19,7 @@
 #include "ranger.h"
 
 Blinker blink = Blinker( LED_BUILTIN, SLOW);
-Ranger termostat = Ranger("Termostat", 400, 600 );
+Ranger termostat = Ranger("Termostat", A0, 400, 600 );
 
 void Ranger::onLess(String name) { blink.setMode( SLOW); }
 void Ranger::onMore(String name) { blink.setMode( FAST); }
