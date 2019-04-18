@@ -20,7 +20,7 @@
 
 Blinker blink = Blinker( LED_BUILTIN, SLOW);
 Encoder encoder = Encoder("Encoder", 2, 4, 0, 6, 0, CYCLIC );
-Key encoderkey = Key("EncoderKey", 2, 5);
+Key encoderkey = Key("EncoderKey", 7, 5);
 
 void Encoder::onChange(String name, int value) { 
     enum BlinkerMode mode = NONE;
