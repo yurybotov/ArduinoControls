@@ -37,9 +37,9 @@ class Blinker {
                 else { if( mode == LIGHT) { ledState = HIGH; digitalWrite( pin, HIGH); } }
             } else {
                 switch( mode) {
-                    case SLOW: blink(500,500); break;
-                    case FLASH: blink(900,100); break;
-                    case MIDDLE: blink(200,200); break;
+                    case SLOW: blink(750,750); break;
+                    case FLASH: blink(1450,50); break;
+                    case MIDDLE: blink(300,300); break;
                     case FAST: blink(50,50); break;
                     default: break;
                 }
